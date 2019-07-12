@@ -51,12 +51,12 @@ namespace ExchangeRateGateway.API.Tests.Validators
         }
         
         
-        [Theory]
-        [MemberData(nameof(Dates))]
-        public void Dates_WhenInvalid_ShouldReturnErrors(DateTime? date)
-        {
-            //_sut.ShouldHaveValidationErrorFor(historyRatesRequest => historyRatesRequest.Dates, date);
-        }
+//        [Theory]
+//        [MemberData(nameof(Dates))]
+//        public void Dates_WhenInvalid_ShouldReturnErrors(DateTime? date)
+//        {
+//            _sut.ShouldHaveValidationErrorFor(historyRatesRequest => historyRatesRequest.Dates, date);
+//        }
 
         [Fact]
         public void BaseCurrency_WhenProvidedThreeLetterCode_ShouldNotReturnException()

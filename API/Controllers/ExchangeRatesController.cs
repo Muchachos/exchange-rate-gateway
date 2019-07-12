@@ -19,6 +19,11 @@ namespace ExchangeRateGateway.API.Controllers
             _exchangeRatesManagement = exchangeRatesManagement ?? throw new ArgumentNullException(nameof(IExchangeRatesManagement),$"Cannot resolve {nameof(IExchangeRatesManagement)}");
         }
         
+        /// <summary>
+        /// Calculate minimum, maximum and average rate based on provided dates
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult>GetHistoryRatesForGivenPeriodsAsync([FromBody] HistoryRatesRequest model)
         {

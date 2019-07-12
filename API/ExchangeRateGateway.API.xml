@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ExchangeRateGateway.API</name>
+    </assembly>
+    <members>
+        <member name="M:ExchangeRateGateway.API.Controllers.ExchangeRatesController.GetHistoryRatesForGivenPeriodsAsync(ExchangeRateGateway.Domain.Model.HistoryRatesRequest)">
+            <summary>
+            Calculate minimum, maximum and average rate based on provided dates
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
