@@ -5,6 +5,7 @@ using ExchangeRateGateway.API.Validators;
 using ExchangeRateGateway.Domain;
 using ExchangeRateGateway.Domain.Model;
 using Microsoft.AspNetCore.Mvc;
+#pragma warning disable 1591
 
 namespace ExchangeRateGateway.API.Controllers
 {

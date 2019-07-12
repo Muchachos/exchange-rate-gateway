@@ -1,6 +1,7 @@
 using ExchangeRateGateway.Domain.Model;
 using FluentValidation;
 using FluentValidation.Results;
+#pragma warning disable 1591
 
 namespace ExchangeRateGateway.API.Validators
 {
