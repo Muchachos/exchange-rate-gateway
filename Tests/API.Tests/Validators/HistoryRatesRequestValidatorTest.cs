@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
 using ExchangeRateGateway.API.Validators;
-using ExchangeRateGateway.Domain.Model;
 using FluentValidation.TestHelper;
 using Xunit;
 
