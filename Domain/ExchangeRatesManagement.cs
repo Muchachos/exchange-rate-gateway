@@ -25,7 +25,8 @@ namespace ExchangeRateGateway.Domain
 
             CheckCurrency(request.BaseCurrency, nameof(request.BaseCurrency));
             CheckCurrency(request.TargetCurrency, nameof(request.TargetCurrency));
-
+            CheckDates(request.Dates, nameof(request.Dates));
+            
             var requestUrls = CreateRequestUrls(request);
             var result = (await GetRatesFromApiAsync(requestUrls))
                 .OrderBy(x => x.Value)
@@ -57,11 +58,19 @@ namespace ExchangeRateGateway.Domain
             return rates;
         }
 
+        private static void CheckDates(DateTime[] dates, string parameterName)
+        {
+            if (!dates.Any(x => x > DateTime.Now || x < new DateTime(1999,1,4))) return;
+
+            var message = string.Join(',', dates.Where(x => x > DateTime.Now || x < new DateTime(1999,1,4)));
+            throw new DateException($"Dates: {message} cannot be in the future or before 1999-01-4", parameterName);
+        }
+
         private static void CheckCurrency(string currency, string parameterName)
         {
             if (string.IsNullOrWhiteSpace(currency))
                 throw new ArgumentException("Argument cannot be null, empty or whitespace", parameterName);
-            if (currency.Length != 3)
+            if (currency.Trim().Length != 3)
                 throw new CurrencyException("Invalid currency format", parameterName);
         }
 

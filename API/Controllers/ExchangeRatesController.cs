@@ -34,9 +34,7 @@ namespace ExchangeRateGateway.API.Controllers
                 var validationResult = validator.Validate(model);
 
                 if (!validationResult.IsValid)
-                {
                     return BadRequest(string.Join('\n', validationResult.Errors.Select(x => x.ErrorMessage)));
-                }
                     
                 var result = await _exchangeRatesManagement.GetRatesForGivenPeriodsAsync(model);
                 

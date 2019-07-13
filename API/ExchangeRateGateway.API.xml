@@ -4,12 +4,6 @@
         <name>ExchangeRateGateway.API</name>
     </assembly>
     <members>
-        <member name="T:ExchangeRateGateway.API.Controllers.ExchangeRatesController">
-            <inheritdoc />
-        </member>
-        <member name="M:ExchangeRateGateway.API.Controllers.ExchangeRatesController.#ctor(ExchangeRateGateway.Domain.IExchangeRatesManagement)">
-            <inheritdoc />
-        </member>
         <member name="M:ExchangeRateGateway.API.Controllers.ExchangeRatesController.GetHistoryRatesForGivenPeriodsAsync(ExchangeRateGateway.Domain.Model.HistoryRatesRequest)">
             <summary>
             Calculate minimum, maximum and average rate based on provided dates

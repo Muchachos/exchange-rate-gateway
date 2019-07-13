@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ExchangeRateGateway.API.Controllers;
 using ExchangeRateGateway.Domain;
@@ -10,7 +11,7 @@ using Xunit;
 namespace ExchangeRateGateway.API.Tests.Controllers
 {
     public class ExchangeRatesControllerTest
-    {
+    {   
         private readonly ExchangeRatesController _sut;
         
         public ExchangeRatesControllerTest()
@@ -45,12 +46,7 @@ namespace ExchangeRateGateway.API.Tests.Controllers
         [InlineData(" E ")]
         public async Task GetHistoryRatesForGivenPeriodsAsync_WhenBaseCurrencyIsInvalid_ShouldReturnBadRequest(string baseCurrency)
         {
-            var result = await _sut.GetHistoryRatesForGivenPeriodsAsync(new HistoryRatesRequest
-            {
-                Dates = new []{ (DateTime?)DateTime.Now}, 
-                BaseCurrency = baseCurrency, 
-                TargetCurrency = "EUR"
-            });
+            var result = await _sut.GetHistoryRatesForGivenPeriodsAsync(new HistoryRatesRequest(new []{ DateTime.Now}, baseCurrency, "EUR"));
             
             Assert.IsType<BadRequestObjectResult>(result);
         }
@@ -66,12 +62,23 @@ namespace ExchangeRateGateway.API.Tests.Controllers
         [InlineData(" E ")]
         public async Task GetHistoryRatesForGivenPeriodsAsync_WhenTargetCurrencyIsInvalid_ShouldReturnBadRequest(string targetCurrency)
         {
-            var result = await _sut.GetHistoryRatesForGivenPeriodsAsync(new HistoryRatesRequest
-            {
-                Dates = new []{ (DateTime?)DateTime.Now}, 
-                BaseCurrency = "EUR", 
-                TargetCurrency = targetCurrency
-            });
+            var result = await _sut.GetHistoryRatesForGivenPeriodsAsync(new HistoryRatesRequest(new []{ DateTime.Now}, "EUR", targetCurrency ));
+            
+            Assert.IsType<BadRequestObjectResult>(result);
+        }
+
+        [Fact]
+        public async Task GetHistoryRatesForGivenPeriodsAsync_WhenDateIsBefore_1999_01_04_ShouldReturnBadRequest()
+        {
+            var result = await _sut.GetHistoryRatesForGivenPeriodsAsync(new HistoryRatesRequest(new []{ new DateTime( 1995, 2, 3) },"EUR","EUR"));
+            
+            Assert.IsType<BadRequestObjectResult>(result);
+        }
+        
+        [Fact]
+        public async Task GetHistoryRatesForGivenPeriodsAsync_WhenDateIsInFuture_ShouldReturnBadRequest()
+        {
+            var result = await _sut.GetHistoryRatesForGivenPeriodsAsync(new HistoryRatesRequest(new []{ DateTime.Now.AddDays(1) }, "EUR", "EUR"));
             
             Assert.IsType<BadRequestObjectResult>(result);
         }
