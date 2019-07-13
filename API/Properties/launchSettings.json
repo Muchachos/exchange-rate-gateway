@@ -4,7 +4,7 @@
     "anonymousAuthentication": true,
     "iisExpress": {
       "applicationUrl": "http://localhost:58434",
-      "sslPort": 0
+      "sslPort": 42322
     }
   },
   "$schema": "http://json.schemastore.org/launchsettings.json",
@@ -21,7 +21,14 @@
     "Docker": {
       "commandName": "Docker",
       "launchBrowser": true,
-      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger"
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
+      "environmentVariables": {
+        "ASPNETCORE_URLS": "https://+:443;http://+:80",
+        "ASPNETCORE_HTTPS_PORT": "42322"
+      },
+      "httpPort": 58434,
+      "useSSL": true,
+      "sslPort": 42322
     }
   }
 }
