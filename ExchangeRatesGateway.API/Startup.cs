@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Serilog;
+using Serilog.Events;
 using Swashbuckle.AspNetCore.Swagger;
 
 #pragma warning disable 1591
@@ -25,6 +27,14 @@ namespace ExchangeRatesGateway.API
         public void ConfigureServices(IServiceCollection services)
         {
             services
+                .AddLogging((builder) => 
+                    builder.AddSerilog(
+                        dispose: true, 
+                        logger: new LoggerConfiguration()
+                            .MinimumLevel.Override("Microsoft",new Serilog.Core.LoggingLevelSwitch(LogEventLevel.Error))
+                            .Enrich.FromLogContext()
+                            .WriteTo.File("Logs/exchange-rates-gateway.txt", rollingInterval: RollingInterval.Day ,outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u4}] | {Message:l}{NewLine}{Exception}")
+                            .CreateLogger()))
                 .AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 

@@ -1,7 +1,11 @@
 using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 using ExchangeRatesGateway.Domain.Exceptions;
 using ExchangeRatesGateway.Domain.Model;
+using ExchangeRatesGateway.Domain.Validators;
+using FluentValidation;
+using Moq;
 using Xunit;
 
 namespace ExchangeRatesGateway.Domain.Tests
@@ -12,9 +16,33 @@ namespace ExchangeRatesGateway.Domain.Tests
 
         public ExchangeRatesManagementTest()
         {
-            _sut = new ExchangeRatesManagement();
+            var httpClientMock = new Mock<HttpClient>();
+            var historyRatesRequestValidatorMock = new HistoryRatesRequestValidator();
+            
+            _sut = new ExchangeRatesManagement(httpClientMock.Object, historyRatesRequestValidatorMock);
         }
 
+        [Fact]
+        public void Constructor_WhenHttpClientArgumentIsNull_ShouldThrowArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>( () =>
+            {
+                var historyRatesRequestValidatorMock = new Mock<IValidator<HistoryRatesRequest>>();
+                new ExchangeRatesManagement(null, historyRatesRequestValidatorMock.Object);
+            });
+        }
+        
+        [Fact]
+        public void Constructor_WhenHistoryRatesRequestValidatorArgumentIsNull_ShouldThrowArgumentNullException()
+        {
+            
+            Assert.Throws<ArgumentNullException>( () =>
+            {
+                var httpClientMock = new Mock<HttpClient>();
+                new ExchangeRatesManagement(httpClientMock.Object, null);
+            });
+        }
+        
         [Fact]
         public async Task GetRatesForGivenPeriodAsync_WhenArgumentIsNull_ShouldThrowArgumentNullException()
         {

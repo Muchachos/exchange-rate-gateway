@@ -1,6 +1,8 @@
 using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 using ExchangeRatesGateway.Domain.Model;
+using ExchangeRatesGateway.Domain.Validators;
 using Xunit;
 
 namespace ExchangeRatesGateway.Domain.Tests
@@ -10,7 +12,7 @@ namespace ExchangeRatesGateway.Domain.Tests
         [Fact]
         public async Task ExchangeRates_SEK_To_NOK_Returns_0970839476467_AsAverage()
         {
-            var sut = new ExchangeRatesManagement();
+            var sut = new ExchangeRatesManagement(new HttpClient(), new HistoryRatesRequestValidator());
 
             var result = await sut.GetRatesForGivenPeriodsAsync(
                 new HistoryRatesRequest(
@@ -27,7 +29,7 @@ namespace ExchangeRatesGateway.Domain.Tests
         [Fact]
         public async Task ExchangeRates_WhenInvalidCurrency_ShouldThrowException()
         {
-            var sut = new ExchangeRatesManagement();
+            var sut = new ExchangeRatesManagement(new HttpClient(), new HistoryRatesRequestValidator());
 
             await Assert.ThrowsAsync<Exception>(async () =>
                 await sut.GetRatesForGivenPeriodsAsync(

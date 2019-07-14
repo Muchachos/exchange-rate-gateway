@@ -1,0 +1,55 @@
+2019-07-14 12:53:35.025 +02:00 [EROR] | Cannot fetch exchange rate.
+System.Exception: Cannot fetch exchange rate.
+   at ExchangeRatesGateway.Domain.Model.ExternalRatesApiResponse.GetRate() in C:\Users\nemihajlovic\Desktop\exchange-rates-gateway\ExchangeRatesGateway.Domain\Model\ExternalRatesApiResponse.cs:line 18
+   at ExchangeRatesGateway.Domain.ExchangeRatesManagement.<>c.<GetRatesFromApiAsync>b__4_3(String jsonResult) in C:\Users\nemihajlovic\Desktop\exchange-rates-gateway\ExchangeRatesGateway.Domain\ExchangeRatesManagement.cs:line 62
+   at System.Linq.Enumerable.SelectArrayIterator`2.ToArray()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.OrderedEnumerable`1.ToList()
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at ExchangeRatesGateway.Domain.ExchangeRatesManagement.GetRatesForGivenPeriodsAsync(HistoryRatesRequest request) in C:\Users\nemihajlovic\Desktop\exchange-rates-gateway\ExchangeRatesGateway.Domain\ExchangeRatesManagement.cs:line 36
+   at ExchangeRatesGateway.API.Controllers.ExchangeRatesController.GetHistoryRatesForGivenPeriodsAsync(HistoryRatesRequest model) in C:\Users\nemihajlovic\Desktop\exchange-rates-gateway\ExchangeRatesGateway.API\Controllers\ExchangeRatesController.cs:line 45
+2019-07-14 14:20:44.762 +02:00 [EROR] | Base currency cannot be the same as target currency.
+Parameter name: BaseCurrency
+System.ArgumentException: Base currency cannot be the same as target currency.
+Parameter name: BaseCurrency
+   at ExchangeRatesGateway.Domain.ExchangeRatesManagement.<>c.<ValidateArgument>b__5_0(ValidationFailure x) in C:\Users\nemihajlovic\Desktop\exchange-rates-gateway\ExchangeRatesGateway.Domain\ExchangeRatesManagement.cs:line 64
+   at System.Linq.Enumerable.Any[TSource](IEnumerable`1 source, Func`2 predicate)
+   at ExchangeRatesGateway.Domain.ExchangeRatesManagement.ValidateArgument(HistoryRatesRequest request) in C:\Users\nemihajlovic\Desktop\exchange-rates-gateway\ExchangeRatesGateway.Domain\ExchangeRatesManagement.cs:line 54
+   at ExchangeRatesGateway.Domain.ExchangeRatesManagement.GetRatesForGivenPeriodsAsync(HistoryRatesRequest request) in C:\Users\nemihajlovic\Desktop\exchange-rates-gateway\ExchangeRatesGateway.Domain\ExchangeRatesManagement.cs:line 32
+   at ExchangeRatesGateway.API.Controllers.ExchangeRatesController.GetHistoryRatesForGivenPeriodsAsync(HistoryRatesRequest model) in C:\Users\nemihajlovic\Desktop\exchange-rates-gateway\ExchangeRatesGateway.API\Controllers\ExchangeRatesController.cs:line 38
+2019-07-14 14:23:38.008 +02:00 [EROR] | Base currency cannot be the same as target currency.
+Parameter name: BaseCurrency
+System.ArgumentException: Base currency cannot be the same as target currency.
+Parameter name: BaseCurrency
+   at ExchangeRatesGateway.Domain.ExchangeRatesManagement.<>c.<ValidateArgument>b__5_0(ValidationFailure x) in C:\Users\nemihajlovic\Desktop\exchange-rates-gateway\ExchangeRatesGateway.Domain\ExchangeRatesManagement.cs:line 64
+   at System.Linq.Enumerable.Any[TSource](IEnumerable`1 source, Func`2 predicate)
+   at ExchangeRatesGateway.Domain.ExchangeRatesManagement.ValidateArgument(HistoryRatesRequest request) in C:\Users\nemihajlovic\Desktop\exchange-rates-gateway\ExchangeRatesGateway.Domain\ExchangeRatesManagement.cs:line 54
+   at ExchangeRatesGateway.Domain.ExchangeRatesManagement.GetRatesForGivenPeriodsAsync(HistoryRatesRequest request) in C:\Users\nemihajlovic\Desktop\exchange-rates-gateway\ExchangeRatesGateway.Domain\ExchangeRatesManagement.cs:line 32
+   at ExchangeRatesGateway.API.Controllers.ExchangeRatesController.GetHistoryRatesForGivenPeriodsAsync(HistoryRatesRequest model) in C:\Users\nemihajlovic\Desktop\exchange-rates-gateway\ExchangeRatesGateway.API\Controllers\ExchangeRatesController.cs:line 38
+2019-07-14 14:23:51.211 +02:00 [EROR] | Base currency cannot be the same as target currency.
+Parameter name: BaseCurrency
+System.ArgumentException: Base currency cannot be the same as target currency.
+Parameter name: BaseCurrency
+   at ExchangeRatesGateway.Domain.ExchangeRatesManagement.<>c.<ValidateArgument>b__5_0(ValidationFailure x) in C:\Users\nemihajlovic\Desktop\exchange-rates-gateway\ExchangeRatesGateway.Domain\ExchangeRatesManagement.cs:line 64
+   at System.Linq.Enumerable.Any[TSource](IEnumerable`1 source, Func`2 predicate)
+   at ExchangeRatesGateway.Domain.ExchangeRatesManagement.ValidateArgument(HistoryRatesRequest request) in C:\Users\nemihajlovic\Desktop\exchange-rates-gateway\ExchangeRatesGateway.Domain\ExchangeRatesManagement.cs:line 54
+   at ExchangeRatesGateway.Domain.ExchangeRatesManagement.GetRatesForGivenPeriodsAsync(HistoryRatesRequest request) in C:\Users\nemihajlovic\Desktop\exchange-rates-gateway\ExchangeRatesGateway.Domain\ExchangeRatesManagement.cs:line 32
+   at ExchangeRatesGateway.API.Controllers.ExchangeRatesController.GetHistoryRatesForGivenPeriodsAsync(HistoryRatesRequest model) in C:\Users\nemihajlovic\Desktop\exchange-rates-gateway\ExchangeRatesGateway.API\Controllers\ExchangeRatesController.cs:line 38
+2019-07-14 14:24:15.911 +02:00 [EROR] | Base currency cannot be the same as target currency.
+Parameter name: BaseCurrency
+System.ArgumentException: Base currency cannot be the same as target currency.
+Parameter name: BaseCurrency
+   at ExchangeRatesGateway.Domain.ExchangeRatesManagement.<>c.<ValidateArgument>b__5_0(ValidationFailure x) in C:\Users\nemihajlovic\Desktop\exchange-rates-gateway\ExchangeRatesGateway.Domain\ExchangeRatesManagement.cs:line 64
+   at System.Linq.Enumerable.Any[TSource](IEnumerable`1 source, Func`2 predicate)
+   at ExchangeRatesGateway.Domain.ExchangeRatesManagement.ValidateArgument(HistoryRatesRequest request) in C:\Users\nemihajlovic\Desktop\exchange-rates-gateway\ExchangeRatesGateway.Domain\ExchangeRatesManagement.cs:line 54
+   at ExchangeRatesGateway.Domain.ExchangeRatesManagement.GetRatesForGivenPeriodsAsync(HistoryRatesRequest request) in C:\Users\nemihajlovic\Desktop\exchange-rates-gateway\ExchangeRatesGateway.Domain\ExchangeRatesManagement.cs:line 32
+   at ExchangeRatesGateway.API.Controllers.ExchangeRatesController.GetHistoryRatesForGivenPeriodsAsync(HistoryRatesRequest model) in C:\Users\nemihajlovic\Desktop\exchange-rates-gateway\ExchangeRatesGateway.API\Controllers\ExchangeRatesController.cs:line 38
+2019-07-14 14:25:27.675 +02:00 [EROR] | Base currency cannot be null
+Parameter name: BaseCurrency
+System.ArgumentException: Base currency cannot be null
+Parameter name: BaseCurrency
+   at ExchangeRatesGateway.Domain.ExchangeRatesManagement.<>c.<ValidateArgument>b__5_0(ValidationFailure x) in C:\Users\nemihajlovic\Desktop\exchange-rates-gateway\ExchangeRatesGateway.Domain\ExchangeRatesManagement.cs:line 64
+   at System.Linq.Enumerable.Any[TSource](IEnumerable`1 source, Func`2 predicate)
+   at ExchangeRatesGateway.Domain.ExchangeRatesManagement.ValidateArgument(HistoryRatesRequest request) in C:\Users\nemihajlovic\Desktop\exchange-rates-gateway\ExchangeRatesGateway.Domain\ExchangeRatesManagement.cs:line 54
+   at ExchangeRatesGateway.Domain.ExchangeRatesManagement.GetRatesForGivenPeriodsAsync(HistoryRatesRequest request) in C:\Users\nemihajlovic\Desktop\exchange-rates-gateway\ExchangeRatesGateway.Domain\ExchangeRatesManagement.cs:line 32
+   at ExchangeRatesGateway.API.Controllers.ExchangeRatesController.GetHistoryRatesForGivenPeriodsAsync(HistoryRatesRequest model) in C:\Users\nemihajlovic\Desktop\exchange-rates-gateway\ExchangeRatesGateway.API\Controllers\ExchangeRatesController.cs:line 38
