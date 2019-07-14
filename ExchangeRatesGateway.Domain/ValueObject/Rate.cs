@@ -5,12 +5,12 @@ namespace ExchangeRatesGateway.Domain.ValueObject
     public class Rate
     {
         public decimal Value { get; }
-        public DateTime Date { get; }
+        public string Date { get; }
 
         internal Rate(decimal value, DateTime date)
         {
             Value = value;
-            Date = date;
+            Date = date.ToString("yyyy-MM-dd");
         }
     }
 }
