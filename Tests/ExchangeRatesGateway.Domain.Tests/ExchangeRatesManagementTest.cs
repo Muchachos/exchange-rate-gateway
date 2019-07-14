@@ -3,8 +3,6 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using ExchangeRatesGateway.Domain.Exceptions;
 using ExchangeRatesGateway.Domain.Model;
-using ExchangeRatesGateway.Domain.Validators;
-using FluentValidation;
 using Moq;
 using Xunit;
 
@@ -17,9 +15,8 @@ namespace ExchangeRatesGateway.Domain.Tests
         public ExchangeRatesManagementTest()
         {
             var httpClientMock = new Mock<HttpClient>();
-            var historyRatesRequestValidatorMock = new HistoryRatesRequestValidator();
             
-            _sut = new ExchangeRatesManagement(httpClientMock.Object, historyRatesRequestValidatorMock);
+            _sut = new ExchangeRatesManagement(httpClientMock.Object);
         }
 
         [Fact]
@@ -27,26 +24,22 @@ namespace ExchangeRatesGateway.Domain.Tests
         {
             Assert.Throws<ArgumentNullException>( () =>
             {
-                var historyRatesRequestValidatorMock = new Mock<IValidator<HistoryRatesRequest>>();
-                new ExchangeRatesManagement(null, historyRatesRequestValidatorMock.Object);
+                new ExchangeRatesManagement(null);
             });
         }
         
-        [Fact]
-        public void Constructor_WhenHistoryRatesRequestValidatorArgumentIsNull_ShouldThrowArgumentNullException()
-        {
-            
-            Assert.Throws<ArgumentNullException>( () =>
-            {
-                var httpClientMock = new Mock<HttpClient>();
-                new ExchangeRatesManagement(httpClientMock.Object, null);
-            });
-        }
         
         [Fact]
         public async Task GetRatesForGivenPeriodAsync_WhenArgumentIsNull_ShouldThrowArgumentNullException()
         {
             await Assert.ThrowsAsync<ArgumentNullException>( () => _sut.GetRatesForGivenPeriodsAsync(null));
+        }
+
+        [Fact]
+        public async Task GetRatesForGivenPeriodsAsync_WhenBaseCurrencyAndTargetCurrencyAreSame_ShouldThrowCurrencyException()
+        {
+            await Assert.ThrowsAsync<CurrencyException>(() =>
+                _sut.GetRatesForGivenPeriodsAsync(new HistoryRatesRequest(It.IsAny<DateTime[]>(), "EUR", "EUR")));
         }
         
         [Theory]
@@ -60,7 +53,7 @@ namespace ExchangeRatesGateway.Domain.Tests
             await Assert.ThrowsAsync<CurrencyException>(async () => 
                 await _sut
                         .GetRatesForGivenPeriodsAsync(
-                            new HistoryRatesRequest(new []{ DateTime.Now}, baseCurrency, "EUR")));
+                            new HistoryRatesRequest(It.IsAny<DateTime[]>(), baseCurrency, "EUR")));
         }
         
         [Theory]
@@ -72,7 +65,7 @@ namespace ExchangeRatesGateway.Domain.Tests
             await Assert.ThrowsAsync<ArgumentException>(async () => 
                 await _sut
                     .GetRatesForGivenPeriodsAsync(
-                        new HistoryRatesRequest(new []{ DateTime.Now}, baseCurrency, "EUR")));
+                        new HistoryRatesRequest(It.IsAny<DateTime[]>(), baseCurrency, "EUR")));
         }
         
         
@@ -87,7 +80,7 @@ namespace ExchangeRatesGateway.Domain.Tests
             await Assert.ThrowsAsync<CurrencyException>(async () => 
                 await _sut
                     .GetRatesForGivenPeriodsAsync(
-                        new HistoryRatesRequest(new []{ DateTime.Now}, "EUR", targetCurrency)));
+                        new HistoryRatesRequest(It.IsAny<DateTime[]>(), "EUR", targetCurrency)));
         }
         
         [Theory]
@@ -99,7 +92,7 @@ namespace ExchangeRatesGateway.Domain.Tests
             await Assert.ThrowsAsync<ArgumentException>(async () => 
                 await _sut
                     .GetRatesForGivenPeriodsAsync(
-                        new HistoryRatesRequest(new []{ DateTime.Now}, "EUR", targetCurrency)));
+                        new HistoryRatesRequest(It.IsAny<DateTime[]>(), "EUR", targetCurrency)));
         }
 
         [Fact]
@@ -108,7 +101,7 @@ namespace ExchangeRatesGateway.Domain.Tests
             await Assert.ThrowsAsync<DateException>(async () => 
                 await _sut
                     .GetRatesForGivenPeriodsAsync(
-                        new HistoryRatesRequest(new []{ new DateTime(1998,1,1), }, "EUR", "EUR")));
+                        new HistoryRatesRequest(new []{ new DateTime(1998,1,1), }, "EUR", "USD")));
         }
         
         [Fact]
@@ -117,7 +110,7 @@ namespace ExchangeRatesGateway.Domain.Tests
             await Assert.ThrowsAsync<DateException>(async () => 
                 await _sut
                     .GetRatesForGivenPeriodsAsync(
-                        new HistoryRatesRequest(new []{ DateTime.Now.AddDays(1), }, "EUR", "EUR")));
+                        new HistoryRatesRequest(new []{ DateTime.Now.AddDays(1), }, "EUR", "USD")));
         }
     }
 }

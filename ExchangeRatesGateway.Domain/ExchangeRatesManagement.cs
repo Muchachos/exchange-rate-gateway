@@ -6,9 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using ExchangeRatesGateway.Domain.Exceptions;
 using ExchangeRatesGateway.Domain.Model;
-using ExchangeRatesGateway.Domain.Validators;
 using ExchangeRatesGateway.Domain.ValueObject;
-using FluentValidation;
 using Newtonsoft.Json;
 
 [assembly: InternalsVisibleTo("ExchangeRatesGateway.Domain.Tests")]
@@ -18,13 +16,11 @@ namespace ExchangeRatesGateway.Domain
     internal class ExchangeRatesManagement : IExchangeRatesManagement
     {
         private readonly HttpClient _httpClient;
-        private readonly IValidator<HistoryRatesRequest> _historyRatesRequestValidator;
         private const string _EXCHANGE_RATES_API = "https://api.exchangeratesapi.io/";
 
-        public ExchangeRatesManagement(HttpClient httpClient, IValidator<HistoryRatesRequest> historyRatesRequestValidator)
+        public ExchangeRatesManagement(HttpClient httpClient)
         {
             _httpClient = httpClient ?? throw new ArgumentNullException(nameof(HttpClient),$"Cannot resolve {nameof(HttpClient)}");
-            _historyRatesRequestValidator = historyRatesRequestValidator ?? throw new ArgumentNullException(nameof(IValidator<HistoryRatesRequest>),$"Cannot resolve {nameof(IValidator<HistoryRatesRequest>)}");
         }
         
         public async Task<ExchangeRatesResponse> GetRatesForGivenPeriodsAsync(HistoryRatesRequest request)
@@ -47,24 +43,31 @@ namespace ExchangeRatesGateway.Domain
         {
             if(request == null)
                 throw new ArgumentNullException(nameof(HistoryRatesRequest), $"Argument {nameof(request)} cannot be null");
+
+            CheckCurrency(request.BaseCurrency, nameof(request.BaseCurrency));
+            CheckCurrency(request.TargetCurrency, nameof(request.TargetCurrency));
             
-            var validationResult = _historyRatesRequestValidator.Validate(request);
-            if (!validationResult.IsValid)
-            {
-                validationResult.Errors.Any(x =>
-                {
-                    switch (x.ErrorCode)
-                    {
-                        case nameof(HistoryRatesRequestValidator.CurrencyLengthPropertyValidator):
-                            throw new CurrencyException(x.ErrorMessage, x.PropertyName);
-                        case nameof(HistoryRatesRequestValidator.FutureDatePropertyValidator):
-                        case nameof(HistoryRatesRequestValidator.PastDatePropertyValidator):
-                            throw new DateException(x.ErrorMessage, x.PropertyName);
-                        default:
-                            throw new ArgumentException(x.ErrorMessage, x.PropertyName);
-                    }
-                });
-            }
+            if(string.Equals(request.BaseCurrency, request.TargetCurrency))
+                throw new CurrencyException("Base currency cannot be the same as target currency", nameof(request.BaseCurrency));
+                
+            CheckDates(request.Dates, nameof(request.Dates));
+        }
+
+        private static void CheckCurrency(string currency, string parameterName)
+        {
+            if(string.IsNullOrWhiteSpace(currency))
+                throw new ArgumentException("Currency cannot be null, empty or whitespace", parameterName);
+
+            if(currency.Trim().Length != 3)
+                throw new CurrencyException("Invalid currency format", parameterName);
+        }
+
+        private static void CheckDates(DateTime[] dates, string parameterName)
+        {
+            if(dates.Any(x=> x > DateTime.Now))
+                throw new DateException("Cannot look for dates in future", parameterName);
+            if(dates.Any(x => x < new DateTime(1999,1,4)))
+                throw new DateException("Cannot look for dates before 1999-01-04", parameterName);
         }
 
         private static async Task<IEnumerable<Rate>> GetRatesFromApiAsync(Task<HttpResponseMessage>[] requestUrls)
@@ -91,7 +94,7 @@ namespace ExchangeRatesGateway.Domain
             return request
                 .Dates
                 .Select(date => _httpClient.GetAsync(
-                    $"{_EXCHANGE_RATES_API}{date:yyyy-MM-dd}?base={request.BaseCurrency}&symbols={request.TargetCurrency}"))
+                    $"{_EXCHANGE_RATES_API}{date:yyyy-MM-dd}?base={request.BaseCurrency.ToUpper()}&symbols={request.TargetCurrency.ToUpper()}"))
                 .ToArray();
         }
     }
