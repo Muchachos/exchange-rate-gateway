@@ -17,7 +17,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Domain\Domain.csproj" />
+      <ProjectReference Include="..\..\ExchangeRatesGateway.Domain\ExchangeRatesGateway.Domain.csproj" />
     </ItemGroup>
 
 </Project>

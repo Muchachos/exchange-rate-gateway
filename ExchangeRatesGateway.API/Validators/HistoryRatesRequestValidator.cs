@@ -7,7 +7,7 @@ using FluentValidation.Validators;
 
 #pragma warning disable 1591
 
-[assembly: InternalsVisibleTo("ExchangeRateGateway.API.Tests")]
+[assembly: InternalsVisibleTo("ExchangeRateGateway.ExchangeRatesGateway.API.Tests")]
 namespace ExchangeRateGateway.API.Validators
 {
     public class HistoryRatesRequestValidator : AbstractValidator<HistoryRatesRequest>

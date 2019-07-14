@@ -9,7 +9,7 @@ using ExchangeRateGateway.Domain.Model;
 using ExchangeRateGateway.Domain.ValueObject;
 using Newtonsoft.Json;
 
-[assembly: InternalsVisibleTo("ExchangeRateGateway.Domain.Tests")]
+[assembly: InternalsVisibleTo("ExchangeRateGateway.ExchangeRatesGateway.Domain.Tests")]
 
 namespace ExchangeRateGateway.Domain
 {
