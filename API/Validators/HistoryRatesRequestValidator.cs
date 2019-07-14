@@ -19,16 +19,14 @@ namespace ExchangeRateGateway.API.Validators
                 .WithMessage("Base currency cannot be null")
                 .NotEmpty()
                 .WithMessage("Base currency cannot be empty")
-                .Must(baseCurrency => baseCurrency != null && baseCurrency.Trim().Length == 3)
-                .WithMessage("Base currency format is not valid");
+                .SetValidator(new CurrencyLengthPropertyValidator("Base currency format is not valid"));
             
             RuleFor(x=> x.TargetCurrency)
                 .NotNull()
                 .WithMessage("Target currency cannot be null")
                 .NotEmpty()
                 .WithMessage("Target currency cannot be empty")
-                .Must(targetCurrency => targetCurrency != null && targetCurrency.Trim().Length == 3)
-                .WithMessage("Target currency format is not valid");
+                .SetValidator(new CurrencyLengthPropertyValidator("Target currency format is not valid"));
 
             RuleFor(x => x.Dates)
                 .NotNull()
@@ -49,6 +47,18 @@ namespace ExchangeRateGateway.API.Validators
             return false;
         }
 
+
+        internal class CurrencyLengthPropertyValidator : PropertyValidator
+        {
+            public CurrencyLengthPropertyValidator(string errorMessage) : base(errorMessage) { }
+
+            protected override bool IsValid(PropertyValidatorContext context)
+            {
+                if (!(context.PropertyValue is string currency)) return false;
+
+                return currency.Trim().Length == 3;
+            }
+        }
        
         internal class FutureDatePropertyValidator : PropertyValidator
         {
