@@ -49,6 +49,8 @@ namespace ExchangeRateGateway.API
                 app.UseHsts();
             }
             
+            app.UseHttpsRedirection();
+
             app.UseSwagger();
             app.UseSwaggerUI(options =>
             {
@@ -56,7 +58,6 @@ namespace ExchangeRateGateway.API
              options.DefaultModelsExpandDepth(-1);
             });
     
-            app.UseHttpsRedirection();
             app.UseMvc();
         }
     }

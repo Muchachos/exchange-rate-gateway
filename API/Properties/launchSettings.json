@@ -3,14 +3,14 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:58434",
-      "sslPort": 42322
+      "applicationUrl": "http://localhost:58436",
+      "sslPort": 42324
     }
   },
   "$schema": "http://json.schemastore.org/launchsettings.json",
   "profiles": {
     "API": {
-      "commandName": "Project",
+      "commandName": "IISExpress",
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
@@ -24,11 +24,11 @@
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
       "environmentVariables": {
         "ASPNETCORE_URLS": "https://+:443;http://+:80",
-        "ASPNETCORE_HTTPS_PORT": "42322"
+        "ASPNETCORE_HTTPS_PORT": "42223"
       },
-      "httpPort": 58434,
-      "useSSL": false,
-      "sslPort": 42322
+      "httpPort": 58235,
+      "useSSL": true,
+      "sslPort": 42223
     }
   }
 }

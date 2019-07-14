@@ -6,6 +6,7 @@
         <AssemblyName>ExchangeRateGateway.API</AssemblyName>
         <RootNamespace>ExchangeRateGateway.API</RootNamespace>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <UserSecretsId>0f79705b-e38b-47b6-9c48-e0103b26a085</UserSecretsId>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
