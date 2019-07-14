@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using ExchangeRatesGateway.API.Controllers;
 using ExchangeRatesGateway.Domain;
+using ExchangeRatesGateway.Domain.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
@@ -45,6 +46,24 @@ namespace ExchangeRatesGateway.API.Tests.Controllers
         public async Task GetHistoryRatesForGivenPeriodsAsync_WhenArgumentIsNull_ShouldReturnBadRequest()
         {
             var result = await _sut.GetHistoryRatesForGivenPeriodsAsync(null);
+            
+            Assert.IsType<BadRequestObjectResult>(result);
+        }
+        
+        [Fact]
+        public async Task GetHistoryRatesForGivenPeriodsAsync_WhenBManagementThrowsException_ShouldReturnBadRequest()
+        {
+            var loggerMock = new Mock<ILogger<ExchangeRatesController>>();
+            var exchangeRatesManagementMock = new Mock<IExchangeRatesManagement>();
+            
+            exchangeRatesManagementMock
+                .Setup( x=> 
+                    x.GetRatesForGivenPeriodsAsync(It.IsAny<HistoryRatesRequest>()))
+                .Throws<Exception>();
+            
+            var sut = new ExchangeRatesController(loggerMock.Object, exchangeRatesManagementMock.Object);
+            
+            var result = await sut.GetHistoryRatesForGivenPeriodsAsync(It.IsAny<HistoryRatesRequest>());
             
             Assert.IsType<BadRequestObjectResult>(result);
         }
