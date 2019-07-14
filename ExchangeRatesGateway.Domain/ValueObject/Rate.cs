@@ -1,6 +1,6 @@
 using System;
 
-namespace ExchangeRateGateway.Domain.ValueObject
+namespace ExchangeRatesGateway.Domain.ValueObject
 {
     public class Rate
     {

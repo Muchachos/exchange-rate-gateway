@@ -4,14 +4,14 @@ using System.Linq;
 using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using ExchangeRateGateway.Domain.Exceptions;
-using ExchangeRateGateway.Domain.Model;
-using ExchangeRateGateway.Domain.ValueObject;
+using ExchangeRatesGateway.Domain.Exceptions;
+using ExchangeRatesGateway.Domain.Model;
+using ExchangeRatesGateway.Domain.ValueObject;
 using Newtonsoft.Json;
 
-[assembly: InternalsVisibleTo("ExchangeRateGateway.ExchangeRatesGateway.Domain.Tests")]
+[assembly: InternalsVisibleTo("ExchangeRatesGateway.Domain.Tests")]
 
-namespace ExchangeRateGateway.Domain
+namespace ExchangeRatesGateway.Domain
 {
     internal class ExchangeRatesManagement : IExchangeRatesManagement
     {

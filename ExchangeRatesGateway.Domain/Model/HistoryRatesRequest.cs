@@ -1,6 +1,6 @@
 using System;
 
-namespace ExchangeRateGateway.Domain.Model
+namespace ExchangeRatesGateway.Domain.Model
 {
     public class HistoryRatesRequest
     {

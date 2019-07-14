@@ -5,17 +5,17 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:2.2-stretch AS build
 WORKDIR /src
-COPY ["API/API.csproj", "API/"]
-COPY ["Domain/Domain.csproj", "Domain/"]
-RUN dotnet restore "API/API.csproj"
+COPY ["API/ExchangeRatesGateway.API.csproj", "API/"]
+COPY ["Domain/ExchangeRatesGateway.Domain.csproj", "Domain/"]
+RUN dotnet restore "API/ExchangeRatesGateway.API.csproj"
 COPY . .
 WORKDIR "/src/API"
-RUN dotnet build "API.csproj" -c Release -o /app
+RUN dotnet build "ExchangeRatesGateway.API.csproj" -c Release -o /app
 
 FROM build AS publish
-RUN dotnet publish "API.csproj" -c Release -o /app
+RUN dotnet publish "ExchangeRatesGateway.API.csproj" -c Release -o /app
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "ExchangeRateGateway.API.dll"]
+ENTRYPOINT ["dotnet", "ExchangeRatesGateway.API.dll"]

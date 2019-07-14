@@ -1,14 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{E033CB12-D81A-478D-B63F-3685D5D41006}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExchangeRatesGateway.API", "ExchangeRatesGateway.API\ExchangeRatesGateway.API.csproj", "{E033CB12-D81A-478D-B63F-3685D5D41006}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{64EE24D6-3794-4269-BDF7-16C2246F9D01}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExchangeRatesGateway.Domain", "ExchangeRatesGateway.Domain\ExchangeRatesGateway.Domain.csproj", "{64EE24D6-3794-4269-BDF7-16C2246F9D01}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6D20ADAA-DF36-4626-9B9F-15BC23E29388}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API.Tests", "Tests\API.Tests\API.Tests.csproj", "{F3B927FF-89F3-4349-8F63-B0D623ED8986}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExchangeRatesGateway.API.Tests", "Tests\ExchangeRatesGateway.API.Tests\ExchangeRatesGateway.API.Tests.csproj", "{F3B927FF-89F3-4349-8F63-B0D623ED8986}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Tests", "Tests\Domain.Tests\Domain.Tests.csproj", "{38B5B6D6-635E-4C1E-9063-3C2E34D466ED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExchangeRatesGateway.Domain.Tests", "Tests\ExchangeRatesGateway.Domain.Tests\ExchangeRatesGateway.Domain.Tests.csproj", "{38B5B6D6-635E-4C1E-9063-3C2E34D466ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

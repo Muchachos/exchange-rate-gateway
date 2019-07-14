@@ -1,9 +1,9 @@
 using System;
 using System.Threading.Tasks;
-using ExchangeRateGateway.Domain.Model;
+using ExchangeRatesGateway.Domain.Model;
 using Xunit;
 
-namespace ExchangeRateGateway.Domain.Tests
+namespace ExchangeRatesGateway.Domain.Tests
 {
     public class IntegrationTests
     {

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ExchangeRateGateway.Domain.Model
+namespace ExchangeRatesGateway.Domain.Model
 {
     public class ExternalRatesApiResponse
     {

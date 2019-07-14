@@ -1,16 +1,17 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
-using ExchangeRateGateway.Domain;
+using ExchangeRatesGateway.Domain;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
+
 #pragma warning disable 1591
 
-namespace ExchangeRateGateway.API
+namespace ExchangeRatesGateway.API
 {
     public class Startup
     {

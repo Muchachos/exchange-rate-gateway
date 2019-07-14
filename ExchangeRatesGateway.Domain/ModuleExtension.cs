@@ -1,7 +1,7 @@
 
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ExchangeRateGateway.Domain
+namespace ExchangeRatesGateway.Domain
 {
     public static class ModuleExtension
     {

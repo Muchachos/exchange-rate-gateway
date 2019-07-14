@@ -1,14 +1,14 @@
 using System;
 using System.Runtime.CompilerServices;
-using ExchangeRateGateway.Domain.Model;
+using ExchangeRatesGateway.Domain.Model;
 using FluentValidation;
 using FluentValidation.Results;
 using FluentValidation.Validators;
 
 #pragma warning disable 1591
 
-[assembly: InternalsVisibleTo("ExchangeRateGateway.ExchangeRatesGateway.API.Tests")]
-namespace ExchangeRateGateway.API.Validators
+[assembly: InternalsVisibleTo("ExchangeRatesGateway.API.Tests")]
+namespace ExchangeRatesGateway.API.Validators
 {
     public class HistoryRatesRequestValidator : AbstractValidator<HistoryRatesRequest>
     {

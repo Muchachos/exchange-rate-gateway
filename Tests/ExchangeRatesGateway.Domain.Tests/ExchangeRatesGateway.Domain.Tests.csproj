@@ -4,10 +4,6 @@
         <TargetFramework>netcoreapp2.2</TargetFramework>
 
         <IsPackable>false</IsPackable>
-
-        <AssemblyName>ExchangeRateGateway.Domain.Tests</AssemblyName>
-
-        <RootNamespace>ExchangeRateGateway.Domain.Tests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

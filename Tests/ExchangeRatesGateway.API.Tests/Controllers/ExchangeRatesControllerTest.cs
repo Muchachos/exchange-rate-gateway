@@ -1,13 +1,13 @@
 using System;
 using System.Threading.Tasks;
-using ExchangeRateGateway.API.Controllers;
-using ExchangeRateGateway.Domain;
-using ExchangeRateGateway.Domain.Model;
+using ExchangeRatesGateway.API.Controllers;
+using ExchangeRatesGateway.Domain;
+using ExchangeRatesGateway.Domain.Model;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Xunit;
 
-namespace ExchangeRateGateway.API.Tests.Controllers
+namespace ExchangeRatesGateway.API.Tests.Controllers
 {
     public class ExchangeRatesControllerTest
     {   

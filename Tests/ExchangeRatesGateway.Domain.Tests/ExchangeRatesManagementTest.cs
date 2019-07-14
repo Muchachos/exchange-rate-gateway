@@ -1,10 +1,10 @@
 using System;
 using System.Threading.Tasks;
-using ExchangeRateGateway.Domain.Exceptions;
-using ExchangeRateGateway.Domain.Model;
+using ExchangeRatesGateway.Domain.Exceptions;
+using ExchangeRatesGateway.Domain.Model;
 using Xunit;
 
-namespace ExchangeRateGateway.Domain.Tests
+namespace ExchangeRatesGateway.Domain.Tests
 {
     public class ExchangeRatesManagementTest
     {

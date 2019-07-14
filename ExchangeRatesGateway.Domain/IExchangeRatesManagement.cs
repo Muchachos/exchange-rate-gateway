@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
-using ExchangeRateGateway.Domain.Model;
+using ExchangeRatesGateway.Domain.Model;
 
-namespace ExchangeRateGateway.Domain
+namespace ExchangeRatesGateway.Domain
 {
     public interface IExchangeRatesManagement
     {

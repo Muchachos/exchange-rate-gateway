@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+
 #pragma warning disable 1591
 
-namespace ExchangeRateGateway.API
+namespace ExchangeRatesGateway.API
 {
     public static class Program
     {

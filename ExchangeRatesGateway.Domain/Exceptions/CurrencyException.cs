@@ -1,6 +1,6 @@
 using System;
 
-namespace ExchangeRateGateway.Domain.Exceptions
+namespace ExchangeRatesGateway.Domain.Exceptions
 {
     public class CurrencyException : ArgumentException
     {

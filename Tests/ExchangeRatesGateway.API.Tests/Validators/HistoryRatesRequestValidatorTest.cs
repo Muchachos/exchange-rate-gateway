@@ -1,12 +1,12 @@
 using System;
-using ExchangeRateGateway.API.Validators;
+using ExchangeRatesGateway.API.Validators;
 using FluentValidation.TestHelper;
 using FluentValidation.Validators;
 using FluentValidation.Validators.UnitTestExtension.Composer;
 using FluentValidation.Validators.UnitTestExtension.Core;
 using Xunit;
 
-namespace ExchangeRateGateway.API.Tests.Validators
+namespace ExchangeRatesGateway.API.Tests.Validators
 {
     public class HistoryRatesRequestValidatorTest
     {

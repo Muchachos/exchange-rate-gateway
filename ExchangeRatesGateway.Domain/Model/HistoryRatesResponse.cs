@@ -1,6 +1,6 @@
-using ExchangeRateGateway.Domain.ValueObject;
+using ExchangeRatesGateway.Domain.ValueObject;
 
-namespace ExchangeRateGateway.Domain.Model
+namespace ExchangeRatesGateway.Domain.Model
 {
     public class ExchangeRatesResponse
     {

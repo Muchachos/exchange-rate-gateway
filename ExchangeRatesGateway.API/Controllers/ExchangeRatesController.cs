@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using ExchangeRateGateway.API.Validators;
-using ExchangeRateGateway.Domain;
-using ExchangeRateGateway.Domain.Model;
+using ExchangeRatesGateway.API.Validators;
+using ExchangeRatesGateway.Domain;
+using ExchangeRatesGateway.Domain.Model;
 using Microsoft.AspNetCore.Mvc;
+
 #pragma warning disable 1591
 
-namespace ExchangeRateGateway.API.Controllers
+namespace ExchangeRatesGateway.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
