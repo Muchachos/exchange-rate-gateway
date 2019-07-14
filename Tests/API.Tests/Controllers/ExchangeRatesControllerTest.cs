@@ -81,5 +81,12 @@ namespace ExchangeRateGateway.API.Tests.Controllers
             
             Assert.IsType<BadRequestObjectResult>(result);
         }
+
+        [Fact]
+        public async Task GetHistoryRatesForGivenPeriodsAsync_WhenModelIsValid_ShouldReturnOk()
+        {
+            var result = await _sut.GetHistoryRatesForGivenPeriodsAsync(new HistoryRatesRequest(new []{ new DateTime(2018,1,1),DateTime.Now }, "EUR", "EUR"));
+            Assert.IsType<OkObjectResult>(result);
+        }
     }
 }
