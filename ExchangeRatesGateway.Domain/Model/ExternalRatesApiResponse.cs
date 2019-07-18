@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace ExchangeRatesGateway.Domain.Model
 {
-    public class ExternalRatesApiResponse
+    internal class ExternalRatesApiResponse
     {
         public Dictionary<string, decimal?> Rates { get; set; }
 
